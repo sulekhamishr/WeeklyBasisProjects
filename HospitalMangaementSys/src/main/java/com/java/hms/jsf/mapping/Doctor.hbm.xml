@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.java.hms.jsf.model.Doctor" table="Doctor">
+        
+        <id name="doctorId" type="string">
+            <column name="doctorId"/>
+            <generator class="assigned"/>
+        </id>
+
+        <property name="doctorName" type="java.lang.String">
+            <column name="doctorName"/>
+        </property>
+
+        <property name="specialization">
+            <column name="specialization"/>
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.java.hms.jsf.model.Specialization</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+
+        <property name="location" type="java.lang.String">
+            <column name="location"/>
+        </property>
+
+        <property name="mobileNo" type="java.lang.String">
+            <column name="mobileNo"/>
+        </property>
+
+        <property name="isStatus">
+            <column name="isStatus"/>
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.java.hms.jsf.model.Status</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        
+    </class>
+    
+
+  <query name="searchByDoctorId">
+    from Doctor d where d.doctorId = :doctorId
+</query>
+
+
+    <query name="showAll">
+        from Doctor
+    </query>
+
+    <query name="showByCategory">
+        from Doctor d where d.specialization = :specialization
+    </query>
+
+</hibernate-mapping>
