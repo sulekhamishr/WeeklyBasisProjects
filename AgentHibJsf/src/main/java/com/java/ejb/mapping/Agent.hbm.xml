@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-Oct-2023, 9:34:49 am by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+
+        <class name="com.java.ejb.Agent" table="Agent">
+        <id name="agentID" type="int">
+            <column name="agentID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+          <property name="city" type="java.lang.String">
+            <column name="city" />
+        </property>
+        <property name="gender">
+            <column name="GENDER" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.java.ejb.Gender</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property name="maritalStatus" type="int">
+            <column name="maritalStatus" />
+        </property>
+        <property name="premium" type="long">
+            <column name="premium" />
+        </property>
+
+    </class>
+     <query name="showAgents">
+            from Agent
+    </query>
+     <query name="searchAgent">
+            from Agent where agentID=:agentID
+    </query>
+    
+
+    
+</hibernate-mapping>
